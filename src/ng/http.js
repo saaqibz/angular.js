@@ -584,8 +584,8 @@ function $HttpProvider() {
      * local transformation array.
      *
      * The following code demonstrates adding a new response transformation to be run after the default response
-     * transformations have been run.
-     *
+     * transformations have been run. The transform response returns the data to be passed along the chain
+     * of response transformations. `header` and `status` are automatically captured down the chain.
      * ```js
      * function appendTransform(defaults, transform) {
      *
@@ -599,8 +599,8 @@ function $HttpProvider() {
      * $http({
      *   url: '...',
      *   method: 'GET',
-     *   transformResponse: appendTransform($http.defaults.transformResponse, function(value) {
-     *     return doTransform(value);
+     *   transformResponse: appendTransform($http.defaults.transformResponse, function(data) {
+     *     return doTransform(data); // returns the modified data parameter
      *   })
      * });
      * ```
